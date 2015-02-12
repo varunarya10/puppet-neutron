@@ -25,6 +25,10 @@ Puppet::Type.type(:neutron_network).provide(
     end
   end
 
+  def self.prefetch
+    @existing_resources = nil
+  end
+
   def self.existing_resources_as_hash()
     @existing_resources ||= begin
       resources_hash = {}
