@@ -25,7 +25,7 @@ Puppet::Type.type(:neutron_network).provide(
     end
   end
 
-  def self.prefetch
+  def self.prefetch(resources)
     @existing_resources = nil
   end
 
