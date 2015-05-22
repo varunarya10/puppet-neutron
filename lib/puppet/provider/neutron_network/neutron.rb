@@ -13,8 +13,6 @@ Puppet::Type.type(:neutron_network).provide(
 
   commands :neutron => 'neutron'
 
-  mk_resource_methods
-
   def self.neutron_type
     'net'
   end
@@ -139,16 +137,48 @@ Puppet::Type.type(:neutron_network).provide(
     existing_resource[:ensure] = :absent
   end
 
+  def id
+    existing_resource[:id]
+  end
+
+  def admin_state_up
+    existing_resource[:admin_state_up]
+  end
+
   def admin_state_up=(value)
     auth_neutron('net-update', "--admin_state_up=#{value}", name)
+  end
+
+  def shared
+    existing_resource[:shared]
   end
 
   def shared=(value)
     auth_neutron('net-update', "--shared=#{value}", name)
   end
 
+  def router_external
+    existing_resource[:router_external]
+  end
+
   def router_external=(value)
     auth_neutron('net-update', "--router:external=#{value}", name)
+  end
+
+  def provider_network_type
+    existing_resource[:provider_network_type]
+  end
+
+  def provider_physical_network
+    existing_resource[:provider_physical_network]
+  end
+
+  def provider_segmentation_id
+    existing_resource[:provider_segmentation_id]
+  end
+
+  def tenant_id
+    existing_resource[:tenant_id]
   end
 
   [
